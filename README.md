@@ -30,3 +30,8 @@ traj.animate_on_potential(xmin=-10, xmax=10, interval=80)
 
 ## Installation
 pip install -e .
+
+## Requirements
+Python 3.7+
+numpy
+matplotlib
