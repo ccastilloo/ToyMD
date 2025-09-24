@@ -8,7 +8,7 @@ from matplotlib.collections import LineCollection
 from matplotlib.animation import FuncAnimation
 from IPython.display import HTML
 class Trajectory1D:
-    """Simple 1D MD trajectory with Euler–Cromer and Velocity-Verlet integration."""
+    """Simple 1D MD trajectory with Euler–Cromer, Velocity-Verlet and Langevin integration."""
     def __init__(self, potential: Potential1D, m=1.0, dt=0.01, steps=1000, x0=0.0, v0=0.0, integrator="euler_cromer"):
         self.potential = potential
         self.m = m
