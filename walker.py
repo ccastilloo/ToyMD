@@ -63,10 +63,11 @@ class Trajectory1D:
         self.E_v[n+1] = 0.5*self.m*self.v[n+1]**2
         self.E_p[n+1] = self.potential.V(self.x[n+1])
 
-    def _langevin_step(self, n, gamma, kT):
+    def _langevin_step(self, n, gamma, T):
         f = -self.potential.dVdx(self.x[n])
         # Random force from Gaussian distribution
-        R = np.random.normal(0, np.sqrt(2 * gamma * kT / self.dt))
+        k = 1.380649e-23  # Boltzmann constant in J/K
+        R = np.random.normal(0, np.sqrt(2 * gamma * k*T / self.dt))
         self.v[n+1] = self.v[n] + (f/self.m - gamma*self.v[n] + R/self.m)*self.dt
         self.x[n+1] = self.x[n] + self.v[n+1]*self.dt
         self.E[n+1] = 0.5*self.m*self.v[n+1]**2 + self.potential.V(self.x[n+1])
@@ -115,7 +116,7 @@ class Trajectory1D:
         plt.title("Energy vs Time")
         plt.show()
     # ---------- Animation method ----------
-    def animate_on_potential(self, xmin=-10, xmax=10, npts=400, interval=50):
+    def animate_on_potential(self, xmin=-10, xmax=10, npts=1000, interval=50):
         X = np.linspace(xmin, xmax, npts)
         Y = self.potential.V(X)
         trajectory_y = self.potential.V(self.x)
