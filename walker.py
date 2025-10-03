@@ -66,7 +66,8 @@ class Trajectory1D:
     def _langevin_step(self, n, gamma, T):
         f = -self.potential.dVdx(self.x[n])
         # Random force from Gaussian distribution
-        k = 1.380649e-23  # Boltzmann constant in J/K
+        #k = 1.380649e-23  # Boltzmann constant in J/K
+        k = 3.1651376146788993e-06  # Boltzmann constant in atomic units
         R = np.random.normal(0, np.sqrt(2 * gamma * k*T / self.dt))
         self.v[n+1] = self.v[n] + (f/self.m - gamma*self.v[n] + R/self.m)*self.dt
         self.x[n+1] = self.x[n] + self.v[n+1]*self.dt
