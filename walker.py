@@ -9,7 +9,7 @@ from matplotlib.animation import FuncAnimation
 from IPython.display import HTML
 class Trajectory1D:
     """Simple 1D MD trajectory with Euler–Cromer, Velocity-Verlet and Langevin integration."""
-    def __init__(self, potential: Potential1D, m=1.0, dt=0.01, steps=1000, x0=0.0, v0=0.0, integrator="euler_cromer",gamma=None,kT=None):
+    def __init__(self, potential: Potential1D, m=1.0, dt=0.01, steps=1000, x0=0.0, v0=0.0, integrator="euler_cromer",gamma=None,T=None):
         self.potential = potential
         self.m = m
         self.dt = dt
@@ -18,7 +18,7 @@ class Trajectory1D:
         self.v0 = v0
         self.integrator = integrator
         self.gamma = gamma
-        self.kT = kT
+        self.T = T
 
         # initialize variables
         self.t = np.linspace(0, dt*steps, steps+1)
@@ -38,7 +38,7 @@ class Trajectory1D:
             elif self.integrator == "velocity_verlet":
                 self._step_velocity_verlet(n)
             elif self.integrator == "langevin":
-                self._langevin_step(n, self.gamma, self.kT)
+                self._langevin_step(n, self.gamma, self.T)
             else:
                 raise ValueError("Unknown integrator: choose 'euler_cromer' or 'velocity_verlet'")
         return self
@@ -128,7 +128,7 @@ class Trajectory1D:
         point, = ax.plot([], [], 'bo', ms=6)
 
         ax.set_xlim(xmin, xmax)
-        ax.set_ylim(min(Y)*0.9, max(Y)*1.1)
+        ax.set_ylim(min(Y)*1.1, max(Y)*1.1)
         ax.set_xlabel("x")
         ax.set_ylabel("Energy")
         ax.legend()

@@ -36,8 +36,8 @@ class Harmonic(Potential1D):
 class Doublewell(Potential1D):
     """V(x) = a (x^2 - b^2)^2"""
     def __init__(self, a, b):
-        self.a = a
-        self.b = b
+        self.a = a # barrier height scale
+        self.b = b # half distance between wells
     def V(self, x):
         return self.a * (x**2 - self.b**2)**2
     def dVdx(self, x):
@@ -77,6 +77,19 @@ class AsimmetricDoublewell(Potential1D):
         return self.a * (x**2 - self.b**2)**2 + self.c * x
     def dVdx(self, x):
         return 4 * self.a * x * (x**2 - self.b**2) + self.c
+    
+class AsymmetricCubicDoublewell(Potential1D):
+    """V(x) = a (x^2 - b^2)^2 + d*x^3"""
+    def __init__(self, a, b, d):
+        self.a = a  # barrier height scale
+        self.b = b  # half distance between wells
+        self.d = d  # cubic asymmetry strength
+
+    def V(self, x):
+        return self.a * (x**2 - self.b**2)**2 + self.d * x**3
+
+    def dVdx(self, x):
+        return 4 * self.a * x * (x**2 - self.b**2) + 3 * self.d * x**2
 
 # ------------------
 # Helper functions
