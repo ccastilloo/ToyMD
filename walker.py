@@ -102,7 +102,7 @@ class Trajectory1D:
         ax.set_ylim(min(Y)*0.9, max(Y)*1.1)
         ax.set_xlabel("x")
         ax.set_ylabel("Energy")
-        ax.set_title("Trajectory on Potential (colored by time)")
+        ax.set_title("Trajectory on Potential")
         plt.show()
 
     # ---------- Energy plot method ----------
