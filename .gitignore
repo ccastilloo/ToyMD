@@ -1,0 +1,50 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+.cache/
+.mypy_cache/
+.pytype/
+.pyre/
+
+# Virtual environments and dependency caches
+.venv/
+venv/
+env/
+.uv-cache/
+
+# Test, lint, and coverage output
+.pytest_cache/
+.ruff_cache/
+.tox/
+.nox/
+.hypothesis/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+
+# Jupyter checkpoints (keep the notebooks themselves)
+.ipynb_checkpoints/
+
+# Packaging output and generated metadata
+*.egg-info/
+.eggs/
+*.egg
+build/
+dist/
+
+# Local environment settings
+.env
+.env.*
+!.env.example
+!.env.sample
+
+# Local editor and operating-system files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~
